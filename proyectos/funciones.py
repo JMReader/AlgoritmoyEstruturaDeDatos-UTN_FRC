@@ -82,7 +82,7 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
 #         origen_patente = "Uruguay"
 #     else:
 #         origen_patente = "otros"
-
+#   return origen_patente
 
 def detectar_pais_por_patente(lineas):
     if (
