@@ -54,6 +54,8 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
+
+
 def detectar_pais_por_patente(lineas):
     if (
         lineas[0] == " "
@@ -130,11 +132,13 @@ def detectar_pais_por_patente(lineas):
     return procedencia
 
 
-def op2():
-    cod = input("ingrese el código identificador de 10 digitos: ")
-    validacion_incorrecta_por_cantidad(
-        "10", cod, "el código identificador de 10 digitos"
-    )
+def op2(): #carga manual de un ticket
+    print("ingrese el código identificador de 10 digitos")
+    cod = int(input("(en caso de ingresar menos se llegara a los 10 digitos con ceros a la izquierda): "))
+    #si no tiene 10 digitos lo llenamos de ceros al inicio hasta llegar a 10 digitos
+    if (len(str(cod)) != 10):
+        o = "0" * (10-len(str(cod)))
+        cod = o + str(cod)
     pat = input(
         "\nIngrese la patente del vehiculo 7 caracteres alfanuméricos.\n"
         "Recuerde que si es de Chile, el primer carácter debe ser un espacio: "
@@ -173,11 +177,14 @@ def op2():
     validacion_incorrecta_por_numero(
         0, 4, paisdecobro, "con el pais en donde nos encontramos"
     )
-    distancia = input(
+    #en ninguna parte el enunciado dice que no pueden ser mas de tres digitos, solo dice que asi viene en el
+    #archivo txt, lo que si por logica no puede ser menor de 0 (tambien dice el enunciado que puede ser 0)
+    distancia = int(input(
         "\nIngrese la cantidad de km recorridos.\n"
-        "Recuerde que no son más de 3 dígitos: "
-    )
-    validacion_incorrecta_por_cantidad("3", distancia, "con la distancia ")
+    ))
+    while distancia < 0:
+        distancia = int(input("la distancia debe ser 0 o mayor a 0, intente nuevamente: "))
+
     t = Ticket(cod, pat, vehiculo, pago, paisdecobro, distancia)
     print(t)
     return t
