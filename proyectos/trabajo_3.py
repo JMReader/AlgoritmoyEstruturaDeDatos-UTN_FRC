@@ -36,7 +36,7 @@ def principal():
         elif op == "8":
             op8(tickets)
         elif op == "9":
-            funciones.op9(tickets)
+            op9(tickets)
         elif op == "0":
             break
         else:
