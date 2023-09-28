@@ -54,6 +54,34 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
+# tengo esta funcion si quieren
+
+# def origen_patente(patente):
+    
+#     patron = []
+    
+#     for caracter in patente[:7]:
+#         if caracter == ' ':
+#             patron.append('_')
+#         elif caracter in valores_numericos:
+#             patron.append('N')
+#         else:
+#             patron.append('L')
+
+#     if patron == ['L', 'L', 'N', 'N', 'N', 'L', 'L']:
+#         origen_patente = "Argentina"
+#     elif patron == ['L', 'L', 'N', 'N', 'N', 'N', 'N']:
+#         origen_patente = "Bolivia"
+#     elif patron == ['L', 'L', 'L', 'N', 'L', 'N', 'N']:
+#         origen_patente = "Brasil"
+#     elif patron == ['_', 'L', 'L', 'L', 'L', 'N', 'N']:
+#         origen_patente = "Chile"
+#     elif patron == ['L', 'L', 'L', 'L', 'N', 'N', 'N']:
+#         origen_patente = "Paraguay"
+#     elif patron == ['L', 'L', 'L', 'N', 'N', 'N', 'N']:
+#         origen_patente = "Uruguay"
+#     else:
+#         origen_patente = "otros"
 
 
 def detectar_pais_por_patente(lineas):
