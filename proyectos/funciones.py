@@ -1,3 +1,4 @@
+from clases import *
 paises = (
     "Chile",
     "Argentina",
@@ -10,25 +11,13 @@ paises = (
 
 
 def op1(v):
-    if v == []:
-        print(v)
+    if not v:
         m = open("peajes-tp3.txt", "rt")
         vuelta = 0
         for i in m:
             if vuelta >= 1:
-
-                class tiket:
-                    pass
-
-                tiket = tiket()
-                tiket.codigo = i[0:10]
-                tiket.patente = i[10:17]
-                tiket.vehiculo = i[17]
-                tiket.pago = i[18]
-                tiket.paisdecobro = i[19]
-                tiket.distancia = i[20:23]
-                v.append(tiket)
-
+                t =Ticket(i[0:10],i[10:17],i[17],i[18],i[19],i[20:23])
+                v.append(t)
             vuelta += 1
     else:
         print("Ya existen tikets guardados desea eliminar esa lista y crear una nueva?")
@@ -41,23 +30,14 @@ def op1(v):
             vuelta = 1
             for i in m:
                 if vuelta >= 1:
-
-                    class tiket:
-                        pass
-
-                    tiket = tiket()
-                    tiket.codigo = i[0:10]
-                    tiket.patente = i[10:17]
-                    tiket.vehiculo = i[17]
-                    tiket.pago = i[18]
-                    tiket.paisdecobro = i[19]
-                    tiket.distancia = i[20:23]
-                    v.append(tiket)
-
+                    t =Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
+                    v.append(t)
                 vuelta += 1
         else:
             pass
     return v
+
+
 
 
 def validacion_incorrecta_por_cantidad(n, subclase, condicion):
@@ -151,20 +131,16 @@ def detectar_pais_por_patente(lineas):
 
 
 def op2():
-    class Tiket:
-        pass
-
-    t = Tiket()
-    t.codigo = input("ingrese el codigo identificador de 10 digitos: ")
+    cod = input("ingrese el codigo identificador de 10 digitos: ")
     validacion_incorrecta_por_cantidad(
-        "10", t.codigo, "el codigo identificador de 10 digitos"
+        "10", cod, "el codigo identificador de 10 digitos"
     )
-    t.patente = input(
+    pat = input(
         "\nIngrese la patente del vehiculo 7 caracteres alfanuméricos.\n"
         "Recuerde que si es de Chile, el primer carácter debe ser un espacio: "
     )
-    validacion_incorrecta_por_cantidad("7", t.patente, "con la patente")
-    t.vehiculo = int(
+    validacion_incorrecta_por_cantidad("7", pat, "con la patente")
+    vehiculo = int(
         input(
             "\nTIPO DE VEHICULO\n"
             "0 - Si es una moto.\n"
@@ -173,8 +149,8 @@ def op2():
             "Ingrese el tipo de vehiculo: "
         )
     )
-    validacion_incorrecta_por_numero(0, 2, t.vehiculo, "con el tipo de vehiculo")
-    t.pago = int(
+    validacion_incorrecta_por_numero(0, 2, vehiculo, "con el tipo de vehiculo")
+    pago = int(
         input(
             "\nFORMA DE PAGO\n"
             "1 - Si es manual.\n"
@@ -182,8 +158,8 @@ def op2():
             "Ingrese la forma de pago: "
         )
     )
-    validacion_incorrecta_por_numero(1, 2, t.pago, "con la forma de pago")
-    t.paisdecobro = int(
+    validacion_incorrecta_por_numero(1, 2, pago, "con la forma de pago")
+    paisdecobro = int(
         input(
             "\nPAIS\n"
             "0 - Argentina.\n"
@@ -195,16 +171,15 @@ def op2():
         )
     )
     validacion_incorrecta_por_numero(
-        0, 4, t.paisdecobro, "con el pais en donde nos encontramos"
+        0, 4, paisdecobro, "con el pais en donde nos encontramos"
     )
-    t.distancia = input(
+    distancia = input(
         "\nIngrese la cantidad de km recorridos.\n"
         "Recuerde que no son más de 3 dígitos: "
     )
-    validacion_incorrecta_por_cantidad("3", t.distancia, "con la distancia ")
-    print(t.codigo, t.patente, t.vehiculo, t.pago, t.paisdecobro, t.distancia)
-    # v.append(t)
-    # print(v[0].patente)
+    validacion_incorrecta_por_cantidad("3", distancia, "con la distancia ")
+    t = Ticket(cod, pat, vehiculo, pago, paisdecobro, distancia)
+    print(t)
     return t
 
 
@@ -473,23 +448,4 @@ def op8(v):
 
 
 def op9(v):
-    n = len(v)
-    distancia_promedio = 0
-    distancia_mayor_promedio = 0
-    if n == 1:
-        print("Distancia promedio: ", v[i].distancia)
-        print(
-            "Cantidad de vehiculos que recorrieron mas de la distancia promedio: 0",
-        )
-    else:
-        for i in range(n - 1):
-            distancia_promedio += int(v[i].distancia)
-        distancia_promedio = distancia_promedio / n
-        for i in range(n - 1):
-            if int(v[i].distancia) > distancia_promedio:
-                distancia_mayor_promedio += 1
-        print("Distancia promedio: ", distancia_promedio, "km")
-        print(
-            "Cantidad de vehiculos que recorrieron mas de la distancia promedio: ",
-            distancia_mayor_promedio,
-        )
+    pass
