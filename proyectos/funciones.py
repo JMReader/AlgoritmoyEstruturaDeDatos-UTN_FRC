@@ -20,10 +20,10 @@ def op1(v):
                 v.append(t)
             vuelta += 1
     else:
-        print("Ya existen tikets guardados desea eliminar esa lista y crear una nueva?")
+        print("Ya existen tickets guardados desea eliminar esa lista y crear una nueva?")
         print("1_ Si")
         print("2_ No")
-        op = input("ingrese su opcion: ")
+        op = input("ingrese su opción: ")
         if op == "1":
             m = open("peajes-tp3.txt", "rt")
             v = []
@@ -131,9 +131,9 @@ def detectar_pais_por_patente(lineas):
 
 
 def op2():
-    cod = input("ingrese el codigo identificador de 10 digitos: ")
+    cod = input("ingrese el código identificador de 10 digitos: ")
     validacion_incorrecta_por_cantidad(
-        "10", cod, "el codigo identificador de 10 digitos"
+        "10", cod, "el código identificador de 10 digitos"
     )
     pat = input(
         "\nIngrese la patente del vehiculo 7 caracteres alfanuméricos.\n"
@@ -185,7 +185,7 @@ def op2():
 
 def op3(v):
     if v == []:
-        print("todavia no hay ningun tiket generado elija antes la opcion 1 o 2")
+        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
     else:
         n = len(v)
         if n > 1:
@@ -196,7 +196,7 @@ def op3(v):
                 # le asigno a la variable pais, el pais detectado por la patente
                 pais = paises[(detectar_pais_por_patente(v[i].patente))]
                 print(
-                    "codigo del tiket: ",
+                    "código del ticket: ",
                     v[i].codigo,
                     " -patente: ",
                     v[i].patente,
@@ -214,7 +214,7 @@ def op3(v):
         else:
             pais = paises[(detectar_pais_por_patente(v[0].patente))]
             print(
-                "codigo del tiket: ",
+                "código del ticket: ",
                 v[0].codigo,
                 " -patente: ",
                 v[0].patente,
@@ -233,7 +233,7 @@ def op3(v):
 
 def op4(v):
     if v == []:
-        print("todavia no hay ningun tiket generado elija antes la opcion 1 o 2")
+        print("todavía no hay ningun ticket generado elija antes la option 1 o 2")
     else:
         p = input("ingrese la patente a buscar: \n")
         x = input("ingrese cabina por la que pasó el vehiculo: ")
@@ -263,7 +263,7 @@ def op4(v):
 
 def op5(v):
     if v == []:
-        print("todavia no hay ningun tiket generado elija antes la opcion 1 o 2")
+        print("todavía no hay ninguno ticket generado elija antes la opción 1 o 2")
     else:
         c = input("ingrese el codigo a buscar: \n")
         encontrado = False
@@ -320,7 +320,7 @@ def op5(v):
 
 def op6(v):
     if v == []:
-        print("todavia no hay ningun tiket generado elija antes la opcion 1 o 2")
+        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
     else:
         n = len(v)
         # Listado de paises
@@ -364,7 +364,7 @@ def op6(v):
 
 def op7(v):
     if v == []:
-        print("todavia no hay ningun tiket generado elija antes la opcion 1 o 2")
+        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
     else:
         n = len(v)
         # Tickets por tipo de vehiculo
