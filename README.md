@@ -4,7 +4,7 @@
  Nacional - Facultad Regional Córdoba).
  ### Descripción  
  - **Lenguaje de Programación:** Python
- - - **Nivel de Dificultad:** Desde conceptos básicos de programación hasta la manipulación de archivos binarios y estructuras de datos avanzadas.
+ - **Nivel de Dificultad:** Desde conceptos básicos de programación hasta la manipulación de archivos binarios y estructuras de datos avanzadas.
  - **Aplicación:** El programa desarrollado aquí está diseñado para ser utilizado en un entorno de peaje. Registra vehículos que pasan por el peaje, su país de origen, la distancia recorrida desde el último peaje, 
  el método de pago y la ubicación de la cabina de peaje (que puede estar en cualquier país del Mercosur). Además, calcula y aplica descuentos a la tarifa base según varios criterios.
  ### Estructura del Repositorio
