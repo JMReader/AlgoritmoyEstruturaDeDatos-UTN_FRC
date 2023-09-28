@@ -1,5 +1,4 @@
-from modulos import funciones
-from modulos import m
+from funciones import *
 
 
 def principal():
@@ -21,21 +20,21 @@ def principal():
         op = input("ingrese su opcion: ")
 
         if op == "1":
-            funciones.op1(tickets)
+            op1(tickets)
         elif op == "2":
-            tickets.append(funciones.op2())
+            tickets.append(op2())
         elif op == "3":
-            funciones.op3(tickets)
+            op3(tickets)
         elif op == "4":
-            funciones.op4(tickets)
+            op4(tickets)
         elif op == "5":
-            funciones.op5(tickets)
+            op5(tickets)
         elif op == "6":
-            funciones.op6(tickets)
+            op6(tickets)
         elif op == "7":
-            funciones.op7(tickets)
+            op7(tickets)
         elif op == "8":
-            funciones.op8(tickets)
+            op8(tickets)
         elif op == "9":
             funciones.op9(tickets)
         elif op == "0":
