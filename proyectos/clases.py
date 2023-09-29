@@ -10,4 +10,7 @@ class Ticket:
     def __str__(self):
         r = "CÓDIGO: " + str(self.codigo) + " PATENTE: " + str(self.patente) + " VEHÍCULO: " + str(self.vehiculo)
         r += " PAGO: " + str(self.pago) + " PAIS DE COBRO: " + str(self.paisdecobro) + " DISTANCIA: " + str(self.distancia)
+        print("octa")
         return r
+
+
