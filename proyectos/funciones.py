@@ -190,17 +190,24 @@ def op2(): #carga manual de un ticket
     return t
 
 
+# definición de una función que ordena al vector v de menor a mayor según su codigo de verificacion
+def ordenar_menor_mayor(v):
+    n = len(v)
+    if n > 1:
+        for i in range(n - 1):
+            for j in range(i + 1, n):
+                if v[i].codigo > v[j].codigo:
+                    v[i].codigo, v[j].codigo = v[j].codigo, v[i].codigo
+    return v
+
+
 def op3(v):
     if v == []:
         print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
     else:
-        n = len(v)
-        if n > 1:
-            for i in range(n - 1):
-                for j in range(i + 1, n):
-                    if v[i].codigo > v[j].codigo:
-                        v[i].codigo, v[j].codigo = v[j].codigo, v[i].codigo
-                # le asigno a la variable pais, el pais detectado por la patente
+        v = ordenar_menor_mayor(v)
+        # le asigno a la variable pais, el pais detectado por la patente
+        for i in range(len(v)):
                 pais = paises[(detectar_pais_por_patente(v[i].patente))]
                 print(
                     "código del ticket: ",
@@ -216,27 +223,10 @@ def op3(v):
                     " -pais de la cabina: ",
                     v[i].paisdecobro,
                     " km recorridos: ",
-                    v[i].distancia,
-                )
-        else:
-            pais = paises[(detectar_pais_por_patente(v[0].patente))]
-            print(
-                "código del ticket: ",
-                v[0].codigo,
-                " -patente: ",
-                v[0].patente,
-                " -pais del vehiculo: ",
-                pais,
-                " -tipo de vehiculo: ",
-                v[0].vehiculo,
-                " -forma de pago: ",
-                v[0].pago,
-                " -pais de la cabina: ",
-                v[0].paisdecobro,
-                " km recorridos: ",
-                v[0].distancia,
-            )
-
+                    v[i].distancia,)
+v = []
+v = op1(v)
+op3(v)
 
 def op4(v):
     if v == []:
