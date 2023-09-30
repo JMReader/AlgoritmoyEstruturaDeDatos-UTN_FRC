@@ -232,10 +232,10 @@ def op4(v):
         print("todavía no hay ningun ticket generado elija antes la option 1 o 2")
     else:
         p = input("ingrese la patente a buscar: \n")
-        x = input("ingrese cabina por la que pasó el vehiculo: ")
+        x = int(input("ingrese cabina por la que pasó el vehiculo: "))
         encontrado = False
         n = len(v)
-        for i in range(n - 1):
+        for i in range(n):
             if v[i].patente == p and v[i].paisdecobro == x:
                 print("Registro encontrado:")
                 print("Código del ticket:", v[i].codigo)
