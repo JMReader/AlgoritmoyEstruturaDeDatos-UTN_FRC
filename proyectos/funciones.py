@@ -37,9 +37,9 @@ def op1(v):
             # lo que hace es si ya existen arreglos creados los deja como esta y agrega desde los arreglos desde el texto.
             # dejando a los creados primero y a los del texto despues
             m = open("peajes-tp3.txt", "rt")
-            vuelta = 1
+            vuelta = len(v)
             for i in m:
-                if vuelta >= 1:
+                if vuelta >= (len(v) + 1):
                     t = Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
                     v.append(t)
                 vuelta += 1
