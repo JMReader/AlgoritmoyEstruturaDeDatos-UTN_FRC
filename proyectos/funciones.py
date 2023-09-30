@@ -54,111 +54,112 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
-# tengo esta funcion si quieren
 
-# def origen_patente(patente):
+
+def detectar_pais_por_patente(patente):
     
-#     patron = []
+    valores_numericos = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+    patron = []
     
-#     for caracter in patente[:7]:
-#         if caracter == ' ':
-#             patron.append('_')
-#         elif caracter in valores_numericos:
-#             patron.append('N')
-#         else:
-#             patron.append('L')
-
-#     if patron == ['L', 'L', 'N', 'N', 'N', 'L', 'L']:
-#         origen_patente = "Argentina"
-#     elif patron == ['L', 'L', 'N', 'N', 'N', 'N', 'N']:
-#         origen_patente = "Bolivia"
-#     elif patron == ['L', 'L', 'L', 'N', 'L', 'N', 'N']:
-#         origen_patente = "Brasil"
-#     elif patron == ['_', 'L', 'L', 'L', 'L', 'N', 'N']:
-#         origen_patente = "Chile"
-#     elif patron == ['L', 'L', 'L', 'L', 'N', 'N', 'N']:
-#         origen_patente = "Paraguay"
-#     elif patron == ['L', 'L', 'L', 'N', 'N', 'N', 'N']:
-#         origen_patente = "Uruguay"
-#     else:
-#         origen_patente = "otros"
-
-#   return origen_patente
-
-def detectar_pais_por_patente(lineas):
-    if (
-        lineas[0] == " "
-        and "A" <= lineas[1] <= "Z"
-        and "A" <= lineas[2] <= "Z"
-        and "A" <= lineas[3] <= "Z"
-        and "A" <= lineas[4] <= "Z"
-        and "0" <= lineas[5] <= "9"
-        and "0" <= lineas[6] <= "9"
-    ):
-        procedencia = 0  # chile
-    else:
-        if (
-            "A" <= lineas[0] <= "Z"
-            and "A" <= lineas[1] <= "Z"
-            and "0" <= lineas[2] <= "9"
-            and "0" <= lineas[3] <= "9"
-            and "0" <= lineas[4] <= "9"
-            and "A" <= lineas[5] <= "Z"
-            and "A" <= lineas[6] <= "Z"
-        ):
-            procedencia = 1  # argentina
-
+    for caracter in patente[:7]:
+        if caracter == ' ':
+            patron.append('_')
+        elif caracter in valores_numericos:
+            patron.append('N')
         else:
-            if (
-                "A" <= lineas[0] <= "Z"
-                and "A" <= lineas[1] <= "Z"
-                and "A" <= lineas[2] <= "Z"
-                and "0" <= lineas[3] <= "9"
-                and "A" <= lineas[4] <= "Z"
-                and "0" <= lineas[5] <= "9"
-                and "0" <= lineas[6] <= "9"
-            ):
-                procedencia = 2  # brasil
-                # LLLNLNN
-            else:
-                if (
-                    "A" <= lineas[0] <= "Z"
-                    and "A" <= lineas[1] <= "Z"
-                    and "0" <= lineas[2] <= "9"
-                    and "0" <= lineas[3] <= "9"
-                    and "0" <= lineas[4] <= "9"
-                    and "0" <= lineas[5] <= "9"
-                    and "0" <= lineas[6] <= "9"
-                ):
-                    procedencia = 3  # bolivia
-                    # LLNNNNN
-                else:
-                    if (
-                        "A" <= lineas[0] <= "Z"
-                        and "A" <= lineas[1] <= "Z"
-                        and "A" <= lineas[2] <= "Z"
-                        and "A" <= lineas[3] <= "Z"
-                        and "0" <= lineas[4] <= "9"
-                        and "0" <= lineas[5] <= "9"
-                        and "0" <= lineas[6] <= "9"
-                    ):
-                        procedencia = 4  # paraguay
-                        # LLLLNN
-                    else:
-                        if (
-                            "A" <= lineas[0] <= "Z"
-                            and "A" <= lineas[1] <= "Z"
-                            and "A" <= lineas[2] <= "Z"
-                            and "0" <= lineas[3] <= "9"
-                            and "0" <= lineas[4] <= "9"
-                            and "0" <= lineas[5] <= "9"
-                            and "0" <= lineas[6] <= "9"
-                        ):
-                            procedencia = 5  # uruguay
-                            # LLLNNNN
-                        else:
-                            procedencia = 6  # otros paises
-    return procedencia
+            patron.append('L')
+
+    if patron == ['L', 'L', 'N', 'N', 'N', 'L', 'L']:
+        origen_patente = 1 #"Argentina"
+    elif patron == ['L', 'L', 'N', 'N', 'N', 'N', 'N']:
+        origen_patente = 3 #"Bolivia"
+    elif patron == ['L', 'L', 'L', 'N', 'L', 'N', 'N']:
+        origen_patente = 2 #"Brasil"
+    elif patron == ['_', 'L', 'L', 'L', 'L', 'N', 'N']:
+        origen_patente = 0 #"Chile"
+    elif patron == ['L', 'L', 'L', 'L', 'N', 'N', 'N']:
+        origen_patente = 4 #"Paraguay"
+    elif patron == ['L', 'L', 'L', 'N', 'N', 'N', 'N']:
+        origen_patente = 5 #"Uruguay"
+    else:
+        origen_patente = 6 #"otros"
+
+    return origen_patente
+
+# def detectar_pais_por_patente(lineas):
+#     if (
+#         lineas[0] == " "
+#         and "A" <= lineas[1] <= "Z"
+#         and "A" <= lineas[2] <= "Z"
+#         and "A" <= lineas[3] <= "Z"
+#         and "A" <= lineas[4] <= "Z"
+#         and "0" <= lineas[5] <= "9"
+#         and "0" <= lineas[6] <= "9"
+#     ):
+#         procedencia = 0  # chile
+#     else:
+#         if (
+#             "A" <= lineas[0] <= "Z"
+#             and "A" <= lineas[1] <= "Z"
+#             and "0" <= lineas[2] <= "9"
+#             and "0" <= lineas[3] <= "9"
+#             and "0" <= lineas[4] <= "9"
+#             and "A" <= lineas[5] <= "Z"
+#             and "A" <= lineas[6] <= "Z"
+#         ):
+#             procedencia = 1  # argentina
+
+#         else:
+#             if (
+#                 "A" <= lineas[0] <= "Z"
+#                 and "A" <= lineas[1] <= "Z"
+#                 and "A" <= lineas[2] <= "Z"
+#                 and "0" <= lineas[3] <= "9"
+#                 and "A" <= lineas[4] <= "Z"
+#                 and "0" <= lineas[5] <= "9"
+#                 and "0" <= lineas[6] <= "9"
+#             ):
+#                 procedencia = 2  # brasil
+#                 # LLLNLNN
+#             else:
+#                 if (
+#                     "A" <= lineas[0] <= "Z"
+#                     and "A" <= lineas[1] <= "Z"
+#                     and "0" <= lineas[2] <= "9"
+#                     and "0" <= lineas[3] <= "9"
+#                     and "0" <= lineas[4] <= "9"
+#                     and "0" <= lineas[5] <= "9"
+#                     and "0" <= lineas[6] <= "9"
+#                 ):
+#                     procedencia = 3  # bolivia
+#                     # LLNNNNN
+#                 else:
+#                     if (
+#                         "A" <= lineas[0] <= "Z"
+#                         and "A" <= lineas[1] <= "Z"
+#                         and "A" <= lineas[2] <= "Z"
+#                         and "A" <= lineas[3] <= "Z"
+#                         and "0" <= lineas[4] <= "9"
+#                         and "0" <= lineas[5] <= "9"
+#                         and "0" <= lineas[6] <= "9"
+#                     ):
+#                         procedencia = 4  # paraguay
+#                         # LLLLNN
+#                     else:
+#                         if (
+#                             "A" <= lineas[0] <= "Z"
+#                             and "A" <= lineas[1] <= "Z"
+#                             and "A" <= lineas[2] <= "Z"
+#                             and "0" <= lineas[3] <= "9"
+#                             and "0" <= lineas[4] <= "9"
+#                             and "0" <= lineas[5] <= "9"
+#                             and "0" <= lineas[6] <= "9"
+#                         ):
+#                             procedencia = 5  # uruguay
+#                             # LLLNNNN
+#                         else:
+#                             procedencia = 6  # otros paises
+#     return procedencia
 
 
 def op2(): #carga manual de un ticket
