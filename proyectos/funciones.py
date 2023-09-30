@@ -224,9 +224,8 @@ def op3(v):
                     v[i].paisdecobro,
                     " km recorridos: ",
                     v[i].distancia,)
-v = []
-v = op1(v)
-op3(v)
+
+
 
 def op4(v):
     if v == []:
