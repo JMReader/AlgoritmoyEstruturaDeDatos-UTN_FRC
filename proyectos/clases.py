@@ -11,3 +11,5 @@ class Ticket:
         r = "CÓDIGO: " + str(self.codigo) + " PATENTE: " + str(self.patente) + " VEHÍCULO: " + str(self.vehiculo)
         r += " PAGO: " + str(self.pago) + " PAIS DE COBRO: " + str(self.paisdecobro) + " DISTANCIA: " + str(self.distancia)
         return r
+
+
