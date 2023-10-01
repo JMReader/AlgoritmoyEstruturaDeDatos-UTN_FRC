@@ -1,5 +1,7 @@
 from clases import *
+import pickle
 
+ruta = 'peajes-tp4.csv'
 paises = (
     "Chile",
     "Argentina",
@@ -11,33 +13,19 @@ paises = (
 )
 
 
-def op1(v):
-    if not v:
-        m = open("peajes-tp3.txt", "rt")
-        vuelta = 0
-        for i in m:
-            if vuelta >= 1:
-                t = Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
-                v.append(t)
-            vuelta += 1
-    else:
-        print("Ya existen tickets guardados desea eliminar esa lista y crear una nueva?")
-        print("1_ Si")
-        print("2_ No")
-        op = input("ingrese su opción: ")
-        if op == "1":
-            m = open("peajes-tp3.txt", "rt")
-            v = []
-            vuelta = 1
-            for i in m:
-                if vuelta >= 1:
-                    t = Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
-                    v.append(t)
-                vuelta += 1
-        else:
-            pass
-    return v
-
+def op1():
+    cont = 0
+    archivo = open(ruta) #archivo de texto csv de donde vienen los datos
+    datos = open("datos.dat", "wb") #archivo de datos de tipo binario
+    for line in archivo:
+        cont +=1
+        a = line.split(",")
+        if cont > 2:
+            t = Ticket(a[0],a[1],a[2],a[3],a[4],a[5])
+            pickle.dump(t,datos)
+    archivo.close()
+    datos.close()
+    print("datos cargados correctamente.")
 
 def validacion_incorrecta_por_cantidad(n, subclase, condicion):
     while len(subclase) != int(n):
@@ -53,80 +41,34 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
-def detectar_pais_por_patente(lineas):
-    if (
-            lineas[0] == " "
-            and "A" <= lineas[1] <= "Z"
-            and "A" <= lineas[2] <= "Z"
-            and "A" <= lineas[3] <= "Z"
-            and "A" <= lineas[4] <= "Z"
-            and "0" <= lineas[5] <= "9"
-            and "0" <= lineas[6] <= "9"
-    ):
-        procedencia = 0  # chile
-    else:
-        if (
-                "A" <= lineas[0] <= "Z"
-                and "A" <= lineas[1] <= "Z"
-                and "0" <= lineas[2] <= "9"
-                and "0" <= lineas[3] <= "9"
-                and "0" <= lineas[4] <= "9"
-                and "A" <= lineas[5] <= "Z"
-                and "A" <= lineas[6] <= "Z"
-        ):
-            procedencia = 1  # argentina
+def detectar_pais_por_patente(patente):
+    valores_numericos = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+    patron = []
 
+    for caracter in patente[:7]:
+        if caracter == ' ':
+            patron.append('_')
+        elif caracter in valores_numericos:
+            patron.append('N')
         else:
-            if (
-                    "A" <= lineas[0] <= "Z"
-                    and "A" <= lineas[1] <= "Z"
-                    and "A" <= lineas[2] <= "Z"
-                    and "0" <= lineas[3] <= "9"
-                    and "A" <= lineas[4] <= "Z"
-                    and "0" <= lineas[5] <= "9"
-                    and "0" <= lineas[6] <= "9"
-            ):
-                procedencia = 2  # brasil
-                # LLLNLNN
-            else:
-                if (
-                        "A" <= lineas[0] <= "Z"
-                        and "A" <= lineas[1] <= "Z"
-                        and "0" <= lineas[2] <= "9"
-                        and "0" <= lineas[3] <= "9"
-                        and "0" <= lineas[4] <= "9"
-                        and "0" <= lineas[5] <= "9"
-                        and "0" <= lineas[6] <= "9"
-                ):
-                    procedencia = 3  # bolivia
-                    # LLNNNNN
-                else:
-                    if (
-                            "A" <= lineas[0] <= "Z"
-                            and "A" <= lineas[1] <= "Z"
-                            and "A" <= lineas[2] <= "Z"
-                            and "A" <= lineas[3] <= "Z"
-                            and "0" <= lineas[4] <= "9"
-                            and "0" <= lineas[5] <= "9"
-                            and "0" <= lineas[6] <= "9"
-                    ):
-                        procedencia = 4  # paraguay
-                        # LLLLNN
-                    else:
-                        if (
-                                "A" <= lineas[0] <= "Z"
-                                and "A" <= lineas[1] <= "Z"
-                                and "A" <= lineas[2] <= "Z"
-                                and "0" <= lineas[3] <= "9"
-                                and "0" <= lineas[4] <= "9"
-                                and "0" <= lineas[5] <= "9"
-                                and "0" <= lineas[6] <= "9"
-                        ):
-                            procedencia = 5  # uruguay
-                            # LLLNNNN
-                        else:
-                            procedencia = 6  # otros paises
-    return procedencia
+            patron.append('L')
+
+    if patron == ['L', 'L', 'N', 'N', 'N', 'L', 'L']:
+        origen_patente = 1  # "Argentina"
+    elif patron == ['L', 'L', 'N', 'N', 'N', 'N', 'N']:
+        origen_patente = 3  # "Bolivia"
+    elif patron == ['L', 'L', 'L', 'N', 'L', 'N', 'N']:
+        origen_patente = 2  # "Brasil"
+    elif patron == ['_', 'L', 'L', 'L', 'L', 'N', 'N']:
+        origen_patente = 0  # "Chile"
+    elif patron == ['L', 'L', 'L', 'L', 'N', 'N', 'N']:
+        origen_patente = 4  # "Paraguay"
+    elif patron == ['L', 'L', 'L', 'N', 'N', 'N', 'N']:
+        origen_patente = 5  # "Uruguay"
+    else:
+        origen_patente = 6  # "otros"
+
+    return origen_patente
 
 
 def op2():  # carga manual de un ticket
