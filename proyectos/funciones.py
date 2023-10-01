@@ -258,27 +258,9 @@ def op6(v):
         n = len(v)
         # Listado de paises
         conteo_paises = [0, 0, 0, 0, 0, 0, 0]
-        if n == 1:
-            procedencia = detectar_pais_por_patente(v[0].patente)
+        for i in range(n):
+            procedencia = detectar_pais_por_patente(v[i].patente)
             conteo_paises[procedencia] += 1
-            print("Chile")
-            print(conteo_paises[0])
-            print("Argentina")
-            print(conteo_paises[1])
-            print("Brasil")
-            print(conteo_paises[2])
-            print("Bolivia")
-            print(conteo_paises[3])
-            print("Paraguay")
-            print(conteo_paises[4])
-            print("Uruguay")
-            print(conteo_paises[5])
-            print("Otros")
-            print(conteo_paises[6])
-        else:
-            for i in range(n - 1):
-                procedencia = detectar_pais_por_patente(v[i].patente)
-                conteo_paises[procedencia] += 1
             print("Chile")
             print(conteo_paises[0])
             print("Argentina")
