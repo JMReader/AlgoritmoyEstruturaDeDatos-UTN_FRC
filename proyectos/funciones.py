@@ -327,20 +327,23 @@ def calcular_monto(ticket):
 
 
 def op8(v):
-    pagos_tickets = op7(v)
-    total = pagos_tickets[0] + pagos_tickets[1] + pagos_tickets[2]
-    if pagos_tickets[0] > pagos_tickets[1] and pagos_tickets[0] > pagos_tickets[2]:
-        print("Las motos tienen mayor monto acumulado")
-        print("Porcentaje de las motos sobre el total: ")
-        print(int((pagos_tickets[0] / total) * 100), "%")
-    elif pagos_tickets[1] > pagos_tickets[2]:
-        print("Los autos tienen mayor monto acumulado")
-        print("Porcentaje de los autos sobre el total: ")
-        print(int((pagos_tickets[1] / total) * 100), "%")
+    if v == []:
+        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
     else:
-        print("Los camiones tienen mayor monto acumulado")
-        print("Porcentaje de los camiones sobre el total: ")
-        print(int((pagos_tickets[2] / total) * 100), "%")
+        pagos_tickets = op7(v)
+        total = pagos_tickets[0] + pagos_tickets[1] + pagos_tickets[2]
+        if pagos_tickets[0] > pagos_tickets[1] and pagos_tickets[0] > pagos_tickets[2]:
+            print("Las motos tienen mayor monto acumulado")
+            print("Porcentaje de las motos sobre el total: ")
+            print(int((pagos_tickets[0] / total) * 100), "%")
+        elif pagos_tickets[1] > pagos_tickets[2]:
+            print("Los autos tienen mayor monto acumulado")
+            print("Porcentaje de los autos sobre el total: ")
+            print(int((pagos_tickets[1] / total) * 100), "%")
+        else:
+            print("Los camiones tienen mayor monto acumulado")
+            print("Porcentaje de los camiones sobre el total: ")
+            print(int((pagos_tickets[2] / total) * 100), "%")
 
 
 def op9(v):
