@@ -347,4 +347,13 @@ def op8(v):
 
 
 def op9(v):
-    pass
+    l = len(v)
+    cont = 0
+    distTotal = 0
+    for i in range(l):
+        distTotal += int(v[i].distancia)
+    distProm = distTotal/l
+    for i in range(l):
+        if int(v[i].distancia) > distProm:
+            cont += 1
+    print("distancia promedio recorrida desde la ultima cabina:",distProm,"cantidade vehiculos que superaron esa distancia:",cont)
