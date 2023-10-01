@@ -215,25 +215,16 @@ def op3(v):
 
 def op4(v):
     if v == []:
-        print("todavía no hay ningun ticket generado elija antes la option 1 o 2")
+        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
     else:
         p = input("ingrese la patente a buscar: \n")
-        x = int(input("ingrese cabina por la que pasó el vehiculo: "))
+        x = int(input("ingrese pais de cabina por la que pasó el vehiculo: "))
         encontrado = False
         n = len(v)
         for i in range(n):
             if v[i].patente == p and v[i].paisdecobro == x:
                 print("Registro encontrado:")
-                print("Código del ticket:", v[i].codigo)
-                print("Patente:", v[i].patente)
-                print(
-                    "País del vehículo:",
-                    paises[(detectar_pais_por_patente(v[i].patente))],
-                )  # País genérico en este ejemplo
-                print("Tipo de vehículo:", v[i].vehiculo)
-                print("Forma de pago:", v[i].pago)
-                print("País de la cabina:", v[i].paisdecobro)
-                print("Kilómetros recorridos:", v[i].distancia)
+                print(v[i])
                 encontrado = True
                 break
 
