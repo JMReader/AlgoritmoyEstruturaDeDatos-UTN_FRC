@@ -10,7 +10,6 @@ paises = (
     "Otro",
 )
 
-
 def op1(v):
     if not v:
         m = open("peajes-tp3.txt", "rt")
@@ -45,7 +44,6 @@ def validacion_incorrecta_por_cantidad(n, subclase, condicion):
         subclase = input("ingrese de nuevo los parametros: ")
         # verifica que la cantidad de numeros ingresados en la subclase sdea la de n y la condicion es el mensaje de error
 
-
 def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     while not (desde <= int(subclase) <= hasta):
         print("no se cumple " + condicion)
@@ -53,81 +51,36 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
-def detectar_pais_por_patente(lineas):
-    if (
-            lineas[0] == " "
-            and "A" <= lineas[1] <= "Z"
-            and "A" <= lineas[2] <= "Z"
-            and "A" <= lineas[3] <= "Z"
-            and "A" <= lineas[4] <= "Z"
-            and "0" <= lineas[5] <= "9"
-            and "0" <= lineas[6] <= "9"
-    ):
-        procedencia = 0  # chile
-    else:
-        if (
-                "A" <= lineas[0] <= "Z"
-                and "A" <= lineas[1] <= "Z"
-                and "0" <= lineas[2] <= "9"
-                and "0" <= lineas[3] <= "9"
-                and "0" <= lineas[4] <= "9"
-                and "A" <= lineas[5] <= "Z"
-                and "A" <= lineas[6] <= "Z"
-        ):
-            procedencia = 1  # argentina
-
+def detectar_pais_por_patente(patente):
+    
+    valores_numericos = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+    patron = []
+    
+    for caracter in patente[:7]:
+        if caracter == ' ':
+            patron.append('_')
+        elif caracter in valores_numericos:
+            patron.append('N')
         else:
-            if (
-                    "A" <= lineas[0] <= "Z"
-                    and "A" <= lineas[1] <= "Z"
-                    and "A" <= lineas[2] <= "Z"
-                    and "0" <= lineas[3] <= "9"
-                    and "A" <= lineas[4] <= "Z"
-                    and "0" <= lineas[5] <= "9"
-                    and "0" <= lineas[6] <= "9"
-            ):
-                procedencia = 2  # brasil
-                # LLLNLNN
-            else:
-                if (
-                        "A" <= lineas[0] <= "Z"
-                        and "A" <= lineas[1] <= "Z"
-                        and "0" <= lineas[2] <= "9"
-                        and "0" <= lineas[3] <= "9"
-                        and "0" <= lineas[4] <= "9"
-                        and "0" <= lineas[5] <= "9"
-                        and "0" <= lineas[6] <= "9"
-                ):
-                    procedencia = 3  # bolivia
-                    # LLNNNNN
-                else:
-                    if (
-                            "A" <= lineas[0] <= "Z"
-                            and "A" <= lineas[1] <= "Z"
-                            and "A" <= lineas[2] <= "Z"
-                            and "A" <= lineas[3] <= "Z"
-                            and "0" <= lineas[4] <= "9"
-                            and "0" <= lineas[5] <= "9"
-                            and "0" <= lineas[6] <= "9"
-                    ):
-                        procedencia = 4  # paraguay
-                        # LLLLNN
-                    else:
-                        if (
-                                "A" <= lineas[0] <= "Z"
-                                and "A" <= lineas[1] <= "Z"
-                                and "A" <= lineas[2] <= "Z"
-                                and "0" <= lineas[3] <= "9"
-                                and "0" <= lineas[4] <= "9"
-                                and "0" <= lineas[5] <= "9"
-                                and "0" <= lineas[6] <= "9"
-                        ):
-                            procedencia = 5  # uruguay
-                            # LLLNNNN
-                        else:
-                            procedencia = 6  # otros paises
-    return procedencia
+            patron.append('L')
 
+    if patron == ['L', 'L', 'N', 'N', 'N', 'L', 'L']:
+        origen_patente = 1 #"Argentina"
+    elif patron == ['L', 'L', 'N', 'N', 'N', 'N', 'N']:
+        origen_patente = 3 #"Bolivia"
+    elif patron == ['L', 'L', 'L', 'N', 'L', 'N', 'N']:
+        origen_patente = 2 #"Brasil"
+    elif patron == ['_', 'L', 'L', 'L', 'L', 'N', 'N']:
+        origen_patente = 0 #"Chile"
+    elif patron == ['L', 'L', 'L', 'L', 'N', 'N', 'N']:
+        origen_patente = 4 #"Paraguay"
+    elif patron == ['L', 'L', 'L', 'N', 'N', 'N', 'N']:
+        origen_patente = 5 #"Uruguay"
+    else:
+        origen_patente = 6 #"otros"
+
+
+    return origen_patente
 
 def op2():  # carga manual de un ticket
     print("ingrese el código identificador de 10 digitos")
@@ -198,6 +151,7 @@ def ordenar_menor_mayor(v):
     return v
 
 
+
 def op3(v):
     if v == []:
         print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
@@ -207,7 +161,6 @@ def op3(v):
         for i in range(len(v)):
             pais = paises[(detectar_pais_por_patente(v[i].patente))]
             print(v[i])
-
 
 def op4(v):
     if v == []:
@@ -229,7 +182,6 @@ def op4(v):
                 "No se encontró ningún registro que coincida con los criterios especificados."
             )
 
-
 def op5(v):
     if v == []:
         print("todavía no hay ninguno ticket generado elija antes la opción 1 o 2")
@@ -249,7 +201,6 @@ def op5(v):
                 break
         if not encontrado:
             print("No se encontró ningún registro que coincida con los criterios especificados.")
-
 
 def op6(v):
     if v == []:
@@ -276,7 +227,6 @@ def op6(v):
             print("Otros")
             print(conteo_paises[6])
 
-
 def op7(v):
     if v == []:
         print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
@@ -296,7 +246,6 @@ def op7(v):
         print("Camion")
         print(pagos_tickets[2], "\n")
         return pagos_tickets
-
 
 
 def calcular_monto(ticket):
@@ -325,7 +274,6 @@ def calcular_monto(ticket):
 
     return monto
 
-
 def op8(v):
     if v == []:
         print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
@@ -344,7 +292,6 @@ def op8(v):
             print("Los camiones tienen mayor monto acumulado")
             print("Porcentaje de los camiones sobre el total: ")
             print(int((pagos_tickets[2] / total) * 100), "%")
-
 
 def op9(v):
     pass
