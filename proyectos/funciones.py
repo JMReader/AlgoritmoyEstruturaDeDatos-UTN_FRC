@@ -209,21 +209,7 @@ def op3(v):
         # le asigno a la variable pais, el pais detectado por la patente
         for i in range(len(v)):
                 pais = paises[(detectar_pais_por_patente(v[i].patente))]
-                print(
-                    "código del ticket: ",
-                    v[i].codigo,
-                    " -patente: ",
-                    v[i].patente,
-                    " -pais del vehiculo: ",
-                    pais,
-                    " -tipo de vehiculo: ",
-                    v[i].vehiculo,
-                    " -forma de pago: ",
-                    v[i].pago,
-                    " -pais de la cabina: ",
-                    v[i].paisdecobro,
-                    " km recorridos: ",
-                    v[i].distancia,)
+                print(v[i])
 
 
 
