@@ -284,38 +284,19 @@ def op7(v):
         n = len(v)
         # Tickets por tipo de vehiculo
         pagos_tickets = [0, 0, 0]
-        if n == 1:
-            v[0].vehiculo = int(v[0].vehiculo)
-            monto = calcular_monto(v[0])
-            pagos_tickets[v[0].vehiculo] += monto
-            print("Moto")
-            print(pagos_tickets[0])
-            print("Auto")
-            print(pagos_tickets[1])
-            print("Camion")
-            print(pagos_tickets[2])
-        else:
-            for i in range(n - 1):
-                v[i].vehiculo = int(v[i].vehiculo)
-                monto = calcular_monto(v[i])
-                pagos_tickets[v[i].vehiculo] += monto
-            print("Moto")
-            print(pagos_tickets[0])
-            print("Auto")
-            print(pagos_tickets[1])
-            print("Camion")
-            print(pagos_tickets[2], "\n")
-    return pagos_tickets
-    # for i in v:
-    #     i.vehiculo = int(i.vehiculo)
-    #     monto = calcular_monto(i)
-    #     pagos_tickets[i.vehiculo] += monto
-    # print("Moto")
-    # print(pagos_tickets[0])
-    # print("Auto")
-    # print(pagos_tickets[1])
-    # print("Camion")
-    # print(pagos_tickets[2])
+
+        for i in range(n):
+            v[i].vehiculo = int(v[i].vehiculo)
+            monto = calcular_monto(v[i])
+            pagos_tickets[v[i].vehiculo] += monto
+        print("Moto")
+        print(pagos_tickets[0])
+        print("Auto")
+        print(pagos_tickets[1])
+        print("Camion")
+        print(pagos_tickets[2], "\n")
+        return pagos_tickets
+
 
 
 def calcular_monto(ticket):
