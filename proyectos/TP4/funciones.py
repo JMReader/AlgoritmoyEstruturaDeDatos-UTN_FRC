@@ -1,7 +1,9 @@
 from clases import *
 import pickle
+import os.path
 
 ruta = 'peajes-tp4.csv'
+bin = 'datos.dat'
 paises = (
     "Chile",
     "Argentina",
@@ -16,7 +18,7 @@ paises = (
 def op1():
     cont = 0
     archivo = open(ruta) #archivo de texto csv de donde vienen los datos
-    datos = open("datos.dat", "wb") #archivo de datos de tipo binario
+    datos = open(bin, "wb") #archivo de datos de tipo binario
     for line in archivo:
         cont +=1
         a = line.split(",")
@@ -140,16 +142,19 @@ def ordenar_menor_mayor(v):
     return v
 
 
-def op3(v):
-    if v == []:
-        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
+def op3():
+    if os.path.exists(bin):
+        t = os.path.getsize(bin) #tamaño del archivo
+        datos = open(bin,'rb')
+        print("los registros que guardados en el archivo son :")
+        #se usa el método tell() para controlar si el valor del file pointer (el puntero del archivo)
+        #del archivo gestionado con 'datos' es menor que el tamaño en bytes del archivo (ficha 23)
+        while datos.tell() < t:
+            tick = pickle.load(datos) #tickets en el archivo de datos
+            print(tick)
+        datos.close()
     else:
-        v = ordenar_menor_mayor(v)
-        # le asigno a la variable pais, el pais detectado por la patente
-        for i in range(len(v)):
-            pais = paises[(detectar_pais_por_patente(v[i].patente))]
-            print(v[i])
-
+        print("primero debe cargar datos")
 
 def op4(v):
     if v == []:
