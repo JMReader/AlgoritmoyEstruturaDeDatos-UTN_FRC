@@ -7,7 +7,7 @@ def principal():
         print("\nMenú de opciones:")
         print("1. Cargar tickets desde archivo")
         print("2. Cargar ticket manualmente")
-        print("3. Mostrar tickets ordenados por código")
+        print("3. Mostrar tickets almcenados")
         print("4. Buscar ticket por patente y país")
         print("5. Cambiar forma de pago por código")
         print("6. Contar vehículos por país")

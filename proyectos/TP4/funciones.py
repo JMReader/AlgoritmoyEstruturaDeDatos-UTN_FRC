@@ -127,8 +127,10 @@ def op2():  # carga manual de un ticket
         distancia = int(input("la distancia debe ser 0 o mayor a 0, intente nuevamente: "))
 
     t = Ticket(cod, pat, vehiculo, pago, paisdecobro, distancia)
-    print(t)
-    return t
+    datos = open(bin, "ab")
+    pickle.dump(t,datos)
+    datos.close()
+
 
 
 # definición de una función que ordena al vector v de menor a mayor según su codigo de verificacion
