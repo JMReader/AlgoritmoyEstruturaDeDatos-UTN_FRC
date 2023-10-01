@@ -1,4 +1,5 @@
 from clases import *
+
 paises = (
     "Chile",
     "Argentina",
@@ -16,7 +17,7 @@ def op1(v):
         vuelta = 0
         for i in m:
             if vuelta >= 1:
-                t =Ticket(i[0:10],i[10:17],i[17],i[18],i[19],i[20:23])
+                t = Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
                 v.append(t)
             vuelta += 1
     else:
@@ -30,14 +31,12 @@ def op1(v):
             vuelta = 1
             for i in m:
                 if vuelta >= 1:
-                    t =Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
+                    t = Ticket(i[0:10], i[10:17], i[17], i[18], i[19], i[20:23])
                     v.append(t)
                 vuelta += 1
         else:
             pass
     return v
-
-
 
 
 def validacion_incorrecta_por_cantidad(n, subclase, condicion):
@@ -54,76 +53,74 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
-
-
 def detectar_pais_por_patente(lineas):
     if (
-        lineas[0] == " "
-        and "A" <= lineas[1] <= "Z"
-        and "A" <= lineas[2] <= "Z"
-        and "A" <= lineas[3] <= "Z"
-        and "A" <= lineas[4] <= "Z"
-        and "0" <= lineas[5] <= "9"
-        and "0" <= lineas[6] <= "9"
+            lineas[0] == " "
+            and "A" <= lineas[1] <= "Z"
+            and "A" <= lineas[2] <= "Z"
+            and "A" <= lineas[3] <= "Z"
+            and "A" <= lineas[4] <= "Z"
+            and "0" <= lineas[5] <= "9"
+            and "0" <= lineas[6] <= "9"
     ):
         procedencia = 0  # chile
     else:
         if (
-            "A" <= lineas[0] <= "Z"
-            and "A" <= lineas[1] <= "Z"
-            and "0" <= lineas[2] <= "9"
-            and "0" <= lineas[3] <= "9"
-            and "0" <= lineas[4] <= "9"
-            and "A" <= lineas[5] <= "Z"
-            and "A" <= lineas[6] <= "Z"
+                "A" <= lineas[0] <= "Z"
+                and "A" <= lineas[1] <= "Z"
+                and "0" <= lineas[2] <= "9"
+                and "0" <= lineas[3] <= "9"
+                and "0" <= lineas[4] <= "9"
+                and "A" <= lineas[5] <= "Z"
+                and "A" <= lineas[6] <= "Z"
         ):
             procedencia = 1  # argentina
 
         else:
             if (
-                "A" <= lineas[0] <= "Z"
-                and "A" <= lineas[1] <= "Z"
-                and "A" <= lineas[2] <= "Z"
-                and "0" <= lineas[3] <= "9"
-                and "A" <= lineas[4] <= "Z"
-                and "0" <= lineas[5] <= "9"
-                and "0" <= lineas[6] <= "9"
+                    "A" <= lineas[0] <= "Z"
+                    and "A" <= lineas[1] <= "Z"
+                    and "A" <= lineas[2] <= "Z"
+                    and "0" <= lineas[3] <= "9"
+                    and "A" <= lineas[4] <= "Z"
+                    and "0" <= lineas[5] <= "9"
+                    and "0" <= lineas[6] <= "9"
             ):
                 procedencia = 2  # brasil
                 # LLLNLNN
             else:
                 if (
-                    "A" <= lineas[0] <= "Z"
-                    and "A" <= lineas[1] <= "Z"
-                    and "0" <= lineas[2] <= "9"
-                    and "0" <= lineas[3] <= "9"
-                    and "0" <= lineas[4] <= "9"
-                    and "0" <= lineas[5] <= "9"
-                    and "0" <= lineas[6] <= "9"
+                        "A" <= lineas[0] <= "Z"
+                        and "A" <= lineas[1] <= "Z"
+                        and "0" <= lineas[2] <= "9"
+                        and "0" <= lineas[3] <= "9"
+                        and "0" <= lineas[4] <= "9"
+                        and "0" <= lineas[5] <= "9"
+                        and "0" <= lineas[6] <= "9"
                 ):
                     procedencia = 3  # bolivia
                     # LLNNNNN
                 else:
                     if (
-                        "A" <= lineas[0] <= "Z"
-                        and "A" <= lineas[1] <= "Z"
-                        and "A" <= lineas[2] <= "Z"
-                        and "A" <= lineas[3] <= "Z"
-                        and "0" <= lineas[4] <= "9"
-                        and "0" <= lineas[5] <= "9"
-                        and "0" <= lineas[6] <= "9"
+                            "A" <= lineas[0] <= "Z"
+                            and "A" <= lineas[1] <= "Z"
+                            and "A" <= lineas[2] <= "Z"
+                            and "A" <= lineas[3] <= "Z"
+                            and "0" <= lineas[4] <= "9"
+                            and "0" <= lineas[5] <= "9"
+                            and "0" <= lineas[6] <= "9"
                     ):
                         procedencia = 4  # paraguay
                         # LLLLNN
                     else:
                         if (
-                            "A" <= lineas[0] <= "Z"
-                            and "A" <= lineas[1] <= "Z"
-                            and "A" <= lineas[2] <= "Z"
-                            and "0" <= lineas[3] <= "9"
-                            and "0" <= lineas[4] <= "9"
-                            and "0" <= lineas[5] <= "9"
-                            and "0" <= lineas[6] <= "9"
+                                "A" <= lineas[0] <= "Z"
+                                and "A" <= lineas[1] <= "Z"
+                                and "A" <= lineas[2] <= "Z"
+                                and "0" <= lineas[3] <= "9"
+                                and "0" <= lineas[4] <= "9"
+                                and "0" <= lineas[5] <= "9"
+                                and "0" <= lineas[6] <= "9"
                         ):
                             procedencia = 5  # uruguay
                             # LLLNNNN
@@ -132,12 +129,12 @@ def detectar_pais_por_patente(lineas):
     return procedencia
 
 
-def op2(): #carga manual de un ticket
+def op2():  # carga manual de un ticket
     print("ingrese el código identificador de 10 digitos")
     cod = int(input("(en caso de ingresar menos se llegara a los 10 digitos con ceros a la izquierda): "))
-    #si no tiene 10 digitos lo llenamos de ceros al inicio hasta llegar a 10 digitos
+    # si no tiene 10 digitos lo llenamos de ceros al inicio hasta llegar a 10 digitos
     if (len(str(cod)) != 10):
-        o = "0" * (10-len(str(cod)))
+        o = "0" * (10 - len(str(cod)))
         cod = o + str(cod)
     pat = input(
         "\nIngrese la patente del vehiculo 7 caracteres alfanuméricos.\n"
@@ -177,8 +174,8 @@ def op2(): #carga manual de un ticket
     validacion_incorrecta_por_numero(
         0, 4, paisdecobro, "con el pais en donde nos encontramos"
     )
-    #en ninguna parte el enunciado dice que no pueden ser mas de tres digitos, solo dice que asi viene en el
-    #archivo txt, lo que si por logica no puede ser menor de 0 (tambien dice el enunciado que puede ser 0)
+    # en ninguna parte el enunciado dice que no pueden ser mas de tres digitos, solo dice que asi viene en el
+    # archivo txt, lo que si por logica no puede ser menor de 0 (tambien dice el enunciado que puede ser 0)
     distancia = int(input(
         "\nIngrese la cantidad de km recorridos.\n"
     ))
@@ -208,9 +205,8 @@ def op3(v):
         v = ordenar_menor_mayor(v)
         # le asigno a la variable pais, el pais detectado por la patente
         for i in range(len(v)):
-                pais = paises[(detectar_pais_por_patente(v[i].patente))]
-                print(v[i])
-
+            pais = paises[(detectar_pais_por_patente(v[i].patente))]
+            print(v[i])
 
 
 def op4(v):
@@ -241,54 +237,18 @@ def op5(v):
         c = input("ingrese el codigo a buscar: \n")
         encontrado = False
         n = len(v)
-        if n == 1:
-            if v[0].codigo == c:
-                if v[0].pago == 1:
-                    v[0].pago = 2
+        for i in range(n):
+            if v[i].codigo == c:
+                if v[i].pago == 1:
+                    v[i].pago = 2
                 else:
-                    v[0].pago = 1
-                print("Registro encontrado:")
-                print("Código del ticket:", v[0].codigo)
-                print("Patente:", v[0].patente)
-                print(
-                    "País del vehículo:",
-                    paises[(detectar_pais_por_patente(v[0].patente))],
-                )  # País genérico en este ejemplo
-                print("Tipo de vehículo:", v[0].vehiculo)
-                print("Forma de pago:", v[0].pago)
-                print("País de la cabina:", v[0].paisdecobro)
-                print("Kilómetros recorridos:", v[0].distancia)
+                    v[i].pago = 1
+                print("Registro encontrado, (con metodo de pago cambiado):")
+                print(v[i])
                 encontrado = True
-
-            if not encontrado:
-                print(
-                    "No se encontró ningún registro que coincida con los criterios especificados."
-                )
-        else:
-            for i in range(n - 1):
-                if v[i].codigo == c:
-                    if v[i].pago == 1:
-                        v[i].pago = 2
-                    else:
-                        v[i].pago = 1
-                    print("Registro encontrado:")
-                    print("Código del ticket:", v[i].codigo)
-                    print("Patente:", v[i].patente)
-                    print(
-                        "País del vehículo:",
-                        paises[(detectar_pais_por_patente(v[i].patente))],
-                    )  # País genérico en este ejemplo
-                    print("Tipo de vehículo:", v[i].vehiculo)
-                    print("Forma de pago:", v[i].pago)
-                    print("País de la cabina:", v[i].paisdecobro)
-                    print("Kilómetros recorridos:", v[i].distancia)
-                    encontrado = True
-                    break
-
-            if not encontrado:
-                print(
-                    "No se encontró ningún registro que coincida con los criterios especificados."
-                )
+                break
+        if not encontrado:
+            print("No se encontró ningún registro que coincida con los criterios especificados.")
 
 
 def op6(v):
@@ -397,7 +357,7 @@ def calcular_monto(ticket):
         monto = monto - ((10 * monto) / 100)
     if ticket.pago == 2 and ticket.vehiculo == 2:
         monto = (
-            monto + ((monto * 60) / 100) - (((monto + ((monto * 60) / 100)) * 10) / 100)
+                monto + ((monto * 60) / 100) - (((monto + ((monto * 60) / 100)) * 10) / 100)
         )
 
     return monto
