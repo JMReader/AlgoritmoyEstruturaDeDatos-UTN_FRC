@@ -1,5 +1,13 @@
 from funciones import *
 
+paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
+    "Argentina",
+    "Bolivia",
+    "Brasil",
+    "Paraguay",
+    "Uruguay",
+]
+vehiculos = ["motocicletas ","automoviles ","camiones"] #tipos de vehiculos en su respectivo orden de carga
 
 def principal():
     op = -1
@@ -19,10 +27,7 @@ def principal():
         op = input("ingrese su opcion: ")
 
         if op == "1":
-            print("Si carga los datos del archivo csv perdera sus datos almacenados actualmente en su archivo .dat")
-            opcion = int(input("¿Desea continuar? 1) si 2)no "))
-            if opcion==1:
-                op1()
+            op1()
         elif op == "2":
             op2()
         elif op == "3":
@@ -32,7 +37,13 @@ def principal():
         elif op == "5":
             op5()
         elif op == "6":
-            op6()
+            matriz = op6()
+            cant = len(matriz)
+            for i in range(cant):
+                # tambien podemos poner 5 pero para hacerlo escalable lo dejamos asi
+                j = len(matriz[i])
+                for k in range(j):
+                    print("cantidad de", vehiculos[i], "que pasaron por el pais ", paises[k], "son:", matriz[i][k])
         elif op == "7":
             op7()
         elif op == "8":
