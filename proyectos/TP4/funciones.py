@@ -1,22 +1,23 @@
 from clases import *
 import pickle
+import os.path
 
 ruta = 'peajes-tp4.csv'
-paises = (
-    "Chile",
+bin = 'datos.dat'
+paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
     "Argentina",
-    "Brasil",
     "Bolivia",
+    "Brasil",
     "Paraguay",
     "Uruguay",
-    "Otro",
-)
+]
+vehiculos = ["motocicletas ","automoviles ","camiones"] #tipos de vehiculos en sus respectivo orden de carga
 
 
 def op1():
     cont = 0
     archivo = open(ruta) #archivo de texto csv de donde vienen los datos
-    datos = open("datos.dat", "wb") #archivo de datos de tipo binario
+    datos = open(bin, "wb") #archivo de datos de tipo binario
     for line in archivo:
         cont +=1
         a = line.split(",")
@@ -125,8 +126,10 @@ def op2():  # carga manual de un ticket
         distancia = int(input("la distancia debe ser 0 o mayor a 0, intente nuevamente: "))
 
     t = Ticket(cod, pat, vehiculo, pago, paisdecobro, distancia)
-    print(t)
-    return t
+    datos = open(bin, "ab")
+    pickle.dump(t,datos)
+    datos.close()
+
 
 
 # definición de una función que ordena al vector v de menor a mayor según su codigo de verificacion
@@ -140,16 +143,19 @@ def ordenar_menor_mayor(v):
     return v
 
 
-def op3(v):
-    if v == []:
-        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
+def op3():
+    if os.path.exists(bin):
+        t = os.path.getsize(bin) #tamaño del archivo
+        datos = open(bin,'rb')
+        print("los registros que guardados en el archivo son :")
+        #se usa el método tell() para controlar si el valor del file pointer (el puntero del archivo)
+        #del archivo gestionado con 'datos' es menor que el tamaño en bytes del archivo (ficha 23)
+        while datos.tell() < t:
+            tick = pickle.load(datos) #tickets en el archivo de datos
+            print(tick)
+        datos.close()
     else:
-        v = ordenar_menor_mayor(v)
-        # le asigno a la variable pais, el pais detectado por la patente
-        for i in range(len(v)):
-            pais = paises[(detectar_pais_por_patente(v[i].patente))]
-            print(v[i])
-
+        print("primero debe cargar datos, elija opcion 1 o 2")
 
 def op4(v):
     if v == []:
@@ -193,30 +199,26 @@ def op5(v):
             print("No se encontró ningún registro que coincida con los criterios especificados.")
 
 
-def op6(v):
-    if v == []:
-        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
-    else:
-        n = len(v)
+def op6(): # devuelve la matriz bi dimensional para ser usada en el print del main y en el punto 7
+    if os.path.exists(bin):
         # Listado de paises
-        conteo_paises = [0, 0, 0, 0, 0, 0, 0]
-        for i in range(n):
-            procedencia = detectar_pais_por_patente(v[i].patente)
-            conteo_paises[procedencia] += 1
-            print("Chile")
-            print(conteo_paises[0])
-            print("Argentina")
-            print(conteo_paises[1])
-            print("Brasil")
-            print(conteo_paises[2])
-            print("Bolivia")
-            print(conteo_paises[3])
-            print("Paraguay")
-            print(conteo_paises[4])
-            print("Uruguay")
-            print(conteo_paises[5])
-            print("Otros")
-            print(conteo_paises[6])
+        conteo_combinacion = [[0] *5, [0] *5, [0] *5]
+        t = os.path.getsize(bin)  # tamaño del archivo
+        datos = open(bin, 'rb')
+        print("los registros que guardados en el archivo son :")
+        # se usa el método tell() para controlar si el valor del file pointer (el puntero del archivo)
+        # del archivo gestionado con 'datos' es menor que el tamaño en bytes del archivo (ficha 23)
+        while datos.tell() < t:
+            tick = pickle.load(datos)  # tickets en el archivo de datos
+            vehiculo = int(tick.vehiculo)
+            pais = int(tick.paisdecobro)
+            conteo_combinacion[vehiculo][pais] += 1
+        datos.close()
+
+        return conteo_combinacion
+    else:
+        print("primero debe cargar datos, elija opcion 1 o 2")
+
 
 
 def op7(v):
