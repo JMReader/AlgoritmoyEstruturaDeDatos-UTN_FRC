@@ -18,7 +18,7 @@ def principal():
         print("3. Mostrar tickets almcenados")
         print("4. Buscar ticket por patente y país")
         print("5. Cambiar forma de pago por código")
-        print("6. Contar vehículos por país")
+        print("6. Mostrar cantidad de vehiculos que pasaron por las cabinas")
         print("7. Calcular importe acumulado por tipo de vehículo")
         print("8. Encontrar tipo de vehículo con mayor monto acumulado")
         print("9. Calcular distancia promedio y contar vehículos")
