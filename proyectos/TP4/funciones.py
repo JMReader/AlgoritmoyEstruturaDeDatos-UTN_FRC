@@ -11,22 +11,30 @@ paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
     "Paraguay",
     "Uruguay",
 ]
-vehiculos = ["motocicletas ","automoviles ","camiones"] #tipos de vehiculos en sus respectivo orden de carga
+vehiculos = ["motocicletas","automoviles","camiones"] #tipos de vehiculos en sus respectivo orden de carga
 
 
 def op1():
-    cont = 0
-    archivo = open(ruta) #archivo de texto csv de donde vienen los datos
-    datos = open(bin, "wb") #archivo de datos de tipo binario
-    for line in archivo:
-        cont +=1
-        a = line.split(",")
-        if cont > 2:
-            t = Ticket(a[0],a[1],a[2],a[3],a[4],a[5])
-            pickle.dump(t,datos)
-    archivo.close()
-    datos.close()
-    print("datos cargados correctamente.")
+    op = -1
+    print("Desea borrar los datos creados anteriuormente y cerear denuevo los tickets")
+    print("1_ Si \n"
+          "2_ No")
+    op = int(input("Opcion: "))
+    if op == 1:
+        cont = 0
+        archivo = open(ruta) #archivo de texto csv de donde vienen los datos
+        datos = open(bin, "wb") #archivo de datos de tipo binario
+        for line in archivo:
+            cont +=1
+            a = line.split(",")
+            if cont > 2:
+                t = Ticket(a[0],a[1],a[2],a[3],a[4],a[5])
+                pickle.dump(t,datos)
+        archivo.close()
+        datos.close()
+        print("datos cargados correctamente.")
+    else:
+        pass
 
 def validacion_incorrecta_por_cantidad(n, subclase, condicion):
     while len(subclase) != int(n):
@@ -220,26 +228,34 @@ def op6(): # devuelve la matriz bi dimensional para ser usada en el print del ma
         print("primero debe cargar datos, elija opcion 1 o 2")
 
 
+def totalizador_vehiculos(matriz):
+    m = len(matriz)
+    n = len(matriz[0])
+    q = -1
+    print("Cantidad total de vehículos contados por cada tipo de vehículo posible")
+    for f in range(m):
+        ac = 0
+        q += 1
+        for c in range(n):
+            ac += matriz[f][c]
+        print(vehiculos[q]+": ", ac)
 
-def op7(v):
-    if v == []:
-        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
-    else:
-        n = len(v)
-        # Tickets por tipo de vehiculo
-        pagos_tickets = [0, 0, 0]
 
-        for i in range(n):
-            v[i].vehiculo = int(v[i].vehiculo)
-            monto = calcular_monto(v[i])
-            pagos_tickets[v[i].vehiculo] += monto
-        print("Moto")
-        print(pagos_tickets[0])
-        print("Auto")
-        print(pagos_tickets[1])
-        print("Camion")
-        print(pagos_tickets[2], "\n")
-        return pagos_tickets
+def totalizador_paises(matriz):
+    m = len(matriz)
+    n = len(matriz[0])
+    q = -1
+    print("Cantidad de vheiculos que pasan por cada pais")
+    for c in range(n):
+        ac = 0
+        q += 1
+        for f in range(m):
+            ac += matriz[f][c]
+        print(paises[q] + ": ", ac)
+
+def op7(matriz):
+    totalizador_vehiculos(matriz)
+    totalizador_paises(matriz)
 
 
 
