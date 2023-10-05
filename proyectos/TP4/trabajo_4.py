@@ -45,7 +45,7 @@ def principal():
                 for k in range(j):
                     print("cantidad de", vehiculos[i], "que pasaron por el pais ", paises[k], "son:", matriz[i][k])
         elif op == "7":
-            op7()
+            op7(op6())
         elif op == "8":
             op8()
         elif op == "9":
