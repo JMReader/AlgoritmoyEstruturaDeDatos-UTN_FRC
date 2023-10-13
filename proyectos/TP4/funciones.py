@@ -2,7 +2,7 @@ from clases import *
 import pickle
 import os.path
 
-ruta = 'peajes-tp4.csv'
+ruta = 'C:/Users/facud/OneDrive/Documentos/GitHub/AlgoritmoyEstruturaDeDatos-UTN_FRC/proyectos/TP4/peajes-tp4.csv'
 bin = 'datos.dat'
 paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
     "Argentina",
@@ -165,25 +165,26 @@ def op3():
     else:
         print("primero debe cargar datos, elija opcion 1 o 2")
 
-def op4(v):
-    if v == []:
-        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
-    else:
-        p = input("ingrese la patente a buscar: \n")
-        x = int(input("ingrese pais de cabina por la que pasó el vehiculo: "))
-        encontrado = False
-        n = len(v)
-        for i in range(n):
-            if v[i].patente == p and v[i].paisdecobro == x:
-                print("Registro encontrado:")
-                print(v[i])
-                encontrado = True
-                break
+def op4():
+    
+    patente = input("\nDigite la patente a buscar:")
+    tamaño = os.path.getsize(bin)
+    file = open(bin, 'rb')
+    contador = 0
+    
+    while file.tell() < tamaño:
+            
+        ticket = pickle.load(file)
+        #comparar cada ticket del archivo binario con la patente que le pasas a la funcion
+        if ticket.patente == patente:
+            print('\n',ticket,'\n')
+            contador += 1
+            pass
+        
+    file.close()
+    # Mostrar el número de registros mostrados
+    print(f"Se mostraron {contador} registros con la patente {patente}\n")
 
-        if not encontrado:
-            print(
-                "No se encontró ningún registro que coincida con los criterios especificados."
-            )
 
 
 def op5(v):
