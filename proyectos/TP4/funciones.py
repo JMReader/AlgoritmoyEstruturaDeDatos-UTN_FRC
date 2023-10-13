@@ -166,9 +166,25 @@ def op3():
         print("primero debe cargar datos, elija opcion 1 o 2")
 
 def op4():
-    with open(bin,"rb") as arc:
-        for linea in arc:
-            print(linea , end='')
+    
+    patente = input("\nDigite la patente a buscar:")
+    tamaño = os.path.getsize(bin)
+    file = open(bin, 'rb')
+    contador = 0
+    
+    while file.tell() < tamaño:
+            
+        ticket = pickle.load(file)
+        #comparar cada ticket del archivo binario con la patente que le pasas a la funcion
+        if ticket.patente == patente:
+            print('\n',ticket,'\n')
+            contador += 1
+            pass
+        
+    file.close()
+    # Mostrar el número de registros mostrados
+    print(f"Se mostraron {contador} registros con la patente {patente}\n")
+
 
 
 def op5(v):
