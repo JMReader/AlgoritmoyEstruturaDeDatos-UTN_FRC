@@ -2,7 +2,7 @@ from clases import *
 import pickle
 import os.path
 
-ruta = 'C:/Users/facud/OneDrive/Documentos/GitHub/AlgoritmoyEstruturaDeDatos-UTN_FRC/proyectos/TP4/peajes-tp4.csv'
+ruta = 'peajes-tp4.csv'
 bin = 'datos.dat'
 paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
     "Argentina",
@@ -168,11 +168,11 @@ def op3():
 def op4():
     
     patente = input("\nDigite la patente a buscar:")
-    tamaño = os.path.getsize(bin)
+    tam = os.path.getsize(bin)
     file = open(bin, 'rb')
     contador = 0
     
-    while file.tell() < tamaño:
+    while file.tell() < tam:
             
         ticket = pickle.load(file)
         #comparar cada ticket del archivo binario con la patente que le pasas a la funcion
