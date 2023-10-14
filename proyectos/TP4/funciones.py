@@ -4,14 +4,14 @@ import os.path
 
 ruta = 'peajes-tp4.csv'
 bin = 'datos.dat'
-paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
+paises = [  # paises en los que se puede COBRAR en su respectivo orden de craga
     "Argentina",
     "Bolivia",
     "Brasil",
     "Paraguay",
     "Uruguay",
 ]
-vehiculos = ["motocicletas","automoviles","camiones"] #tipos de vehiculos en sus respectivo orden de carga
+vehiculos = ["motocicletas", "automoviles", "camiones"]  # tipos de vehiculos en sus respectivo orden de carga
 
 
 def op1():
@@ -22,19 +22,20 @@ def op1():
     op = int(input("Opcion: "))
     if op == 1:
         cont = 0
-        archivo = open(ruta) #archivo de texto csv de donde vienen los datos
-        datos = open(bin, "wb") #archivo de datos de tipo binario
+        archivo = open(ruta)  # archivo de texto csv de donde vienen los datos
+        datos = open(bin, "wb")  # archivo de datos de tipo binario
         for line in archivo:
-            cont +=1
+            cont += 1
             a = line.split(",")
             if cont > 2:
-                t = Ticket(a[0],a[1],a[2],a[3],a[4],a[5])
-                pickle.dump(t,datos)
+                t = Ticket(a[0], a[1], a[2], a[3], a[4], a[5])
+                pickle.dump(t, datos)
         archivo.close()
         datos.close()
         print("datos cargados correctamente.")
     else:
         pass
+
 
 def validacion_incorrecta_por_cantidad(n, subclase, condicion):
     while len(subclase) != int(n):
@@ -135,9 +136,8 @@ def op2():  # carga manual de un ticket
 
     t = Ticket(cod, pat, vehiculo, pago, paisdecobro, distancia)
     datos = open(bin, "ab")
-    pickle.dump(t,datos)
+    pickle.dump(t, datos)
     datos.close()
-
 
 
 # definición de una función que ordena al vector v de menor a mayor según su codigo de verificacion
@@ -153,65 +153,69 @@ def ordenar_menor_mayor(v):
 
 def op3():
     if os.path.exists(bin):
-        t = os.path.getsize(bin) #tamaño del archivo
-        datos = open(bin,'rb')
+        t = os.path.getsize(bin)  # tamaño del archivo
+        datos = open(bin, 'rb')
         print("los registros que guardados en el archivo son :")
-        #se usa el método tell() para controlar si el valor del file pointer (el puntero del archivo)
-        #del archivo gestionado con 'datos' es menor que el tamaño en bytes del archivo (ficha 23)
+        # se usa el método tell() para controlar si el valor del file pointer (el puntero del archivo)
+        # del archivo gestionado con 'datos' es menor que el tamaño en bytes del archivo (ficha 23)
         while datos.tell() < t:
-            tick = pickle.load(datos) #tickets en el archivo de datos
+            tick = pickle.load(datos)  # tickets en el archivo de datos
             print(tick)
         datos.close()
     else:
         print("primero debe cargar datos, elija opcion 1 o 2")
 
+
 def op4():
-    
     patente = input("\nDigite la patente a buscar:")
     tam = os.path.getsize(bin)
     file = open(bin, 'rb')
     contador = 0
-    
+
     while file.tell() < tam:
-            
+
         ticket = pickle.load(file)
-        #comparar cada ticket del archivo binario con la patente que le pasas a la funcion
+        # comparar cada ticket del archivo binario con la patente que le pasas a la funcion
         if ticket.patente == patente:
-            print('\n',ticket,'\n')
+            print('\n', ticket, '\n')
             contador += 1
             pass
-        
+
     file.close()
     # Mostrar el número de registros mostrados
     print(f"Se mostraron {contador} registros con la patente {patente}\n")
 
 
+def op5(num):
+    bandera = None
+    if not os.path.exists(bin):
+        print('El archivo', bin, 'no existe...')
+        return
 
-def op5(v):
-    if v == []:
-        print("todavía no hay ninguno ticket generado elija antes la opción 1 o 2")
-    else:
-        c = input("ingrese el codigo a buscar: \n")
-        encontrado = False
-        n = len(v)
-        for i in range(n):
-            if v[i].codigo == c:
-                if v[i].pago == 1:
-                    v[i].pago = 2
-                else:
-                    v[i].pago = 1
-                print("Registro encontrado, (con metodo de pago cambiado):")
-                print(v[i])
-                encontrado = True
-                break
-        if not encontrado:
-            print("No se encontró ningún registro que coincida con los criterios especificados.")
+    m = open(bin, "rb")
+    t = os.path.getsize(bin)
+
+    while m.tell() < t:
+        bandera= False
+        # buscamos en el archivo binario cada ticket guardado
+        tickGuardado = pickle.load(m)
+        if tickGuardado.codigo == num:
+            print(tickGuardado)
+            bandera = True
+            break
+    #una vez recorrido el archivo, lo cerramos
+    m.close()
+    #con la bandera sabemos si fue encontrado un registro o no, si no fue encontrado le avisamos al usuario
+    if(bandera == False):
+        print ("no se encontro ningun registro con el codigo identificador",num)
 
 
-def op6(): # devuelve la matriz bi dimensional para ser usada en el print del main y en el punto 7
+
+
+def op6():  # devuelve la matriz bi dimensional para ser usada en el print del main y en el punto 7
     if os.path.exists(bin):
         # Listado de paises
-        conteo_combinacion = [[0] *5, [0] *5, [0] *5]
+        conteo_combinacion = [[0] * 5, [0] * 5, [0] * 5]
         t = os.path.getsize(bin)  # tamaño del archivo
         datos = open(bin, 'rb')
         print("los registros que guardados en el archivo son :")
@@ -239,14 +243,14 @@ def totalizador_vehiculos(matriz):
         q += 1
         for c in range(n):
             ac += matriz[f][c]
-        print(vehiculos[q]+": ", ac)
+        print(vehiculos[q] + ": ", ac)
 
 
 def totalizador_paises(matriz):
     m = len(matriz)
     n = len(matriz[0])
     q = -1
-    print("Cantidad de vheiculos que pasan por cada pais")
+    print("Cantidad de vehículos que pasan por cada pais")
     for c in range(n):
         ac = 0
         q += 1
@@ -254,10 +258,10 @@ def totalizador_paises(matriz):
             ac += matriz[f][c]
         print(paises[q] + ": ", ac)
 
+
 def op7(matriz):
     totalizador_vehiculos(matriz)
     totalizador_paises(matriz)
-
 
 
 def calcular_monto(ticket):
@@ -287,34 +291,6 @@ def calcular_monto(ticket):
     return monto
 
 
-def op8(v):
-    if v == []:
-        print("todavía no hay ningun ticket generado elija antes la opción 1 o 2")
-    else:
-        pagos_tickets = op7(v)
-        total = pagos_tickets[0] + pagos_tickets[1] + pagos_tickets[2]
-        if pagos_tickets[0] > pagos_tickets[1] and pagos_tickets[0] > pagos_tickets[2]:
-            print("Las motos tienen mayor monto acumulado")
-            print("Porcentaje de las motos sobre el total: ")
-            print(int((pagos_tickets[0] / total) * 100), "%")
-        elif pagos_tickets[1] > pagos_tickets[2]:
-            print("Los autos tienen mayor monto acumulado")
-            print("Porcentaje de los autos sobre el total: ")
-            print(int((pagos_tickets[1] / total) * 100), "%")
-        else:
-            print("Los camiones tienen mayor monto acumulado")
-            print("Porcentaje de los camiones sobre el total: ")
-            print(int((pagos_tickets[2] / total) * 100), "%")
-
-
-def op9(v):
-    l = len(v)
-    cont = 0
-    distTotal = 0
-    for i in range(l):
-        distTotal += int(v[i].distancia)
-    distProm = distTotal/l
-    for i in range(l):
-        if int(v[i].distancia) > distProm:
-            cont += 1
-    print("distancia promedio recorrida desde la ultima cabina:",distProm,"cantidade vehiculos que superaron esa distancia:",cont)
+def op8():
+    #Funcion de Nano
+    pass
