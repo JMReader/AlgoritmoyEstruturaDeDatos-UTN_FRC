@@ -296,7 +296,6 @@ def op8():
     if os.path.exists(bin):
             t = os.path.getsize(bin)  # Tamaño del archivo
             datos = open(bin, 'rb')
-            print("Los registros guardados en el archivo son:")
 
         # Paso 1: Calcular la distancia promedio
             total_distancia = 0
@@ -341,12 +340,12 @@ def op8():
             shellsort(tickets)
 
             # Imprimir el arreglo ordenado
+            print("Los vehículos con mayor distancia al promedio guardados en el archivo son:")
             for ticket in tickets:
                 print(f"TICKET: {ticket}")
     else:
         print("Primero debe cargar datos, elija opción 1 o 2")
     print("Distancia promedio desde la ultima cabina entre todos los tickets:", distancia_promedio)
-    print("Total de registros mayor al promedio: ",total)
 
     return True
 
