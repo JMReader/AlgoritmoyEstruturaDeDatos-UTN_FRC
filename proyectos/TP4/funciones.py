@@ -16,7 +16,7 @@ vehiculos = ["motocicletas", "automoviles", "camiones"]  # tipos de vehiculos en
 
 def op1():
     op = -1
-    print("Desea borrar los datos creados anteriuormente y cerear denuevo los tickets")
+    print("Desea borrar los datos creados anteriormente y crear de nuevo los tickets")
     print("1_ Si \n"
           "2_ No")
     op = int(input("Opcion: "))
@@ -293,4 +293,62 @@ def calcular_monto(ticket):
 
 def op8():
     #Funcion de Nano
-    pass
+    #ola   
+    #equide
+    if os.path.exists(bin):
+            t = os.path.getsize(bin)  # Tamaño del archivo
+            datos = open(bin, 'rb')
+            print("Los registros guardados en el archivo son:")
+
+        # Paso 1: Calcular la distancia promedio
+            total_distancia = 0
+            total_registros = 0
+
+            while datos.tell() < t:
+                ticket = pickle.load(datos)  # Tickets en el archivo de datos
+                distancia = int(ticket.distancia)
+                total_distancia += distancia
+                total_registros += 1
+
+            distancia_promedio = total_distancia // total_registros
+
+            # Paso 2: Crear un arreglo de objetos con distancias superiores a la distancia promedio
+            datos.seek(0)  # Regresar el puntero al inicio del archivo
+
+            total = 0
+            tickets = []
+            while datos.tell() < t:
+                ticket = pickle.load(datos)
+                distancia = int(ticket.distancia)
+                if distancia > distancia_promedio:
+                    tickets.append(ticket)
+                    total += 1
+
+            datos.close()
+
+        # Paso 3: Aplicar Shellsort para ordenar el arreglo de objetos por distancia recorrida
+            def shellsort(arr):
+                n = len(arr)
+                gap = n // 2
+                while gap > 0:
+                    for i in range(gap, n):
+                        temp = arr[i]
+                        j = i
+                        while j >= gap and arr[j - gap].distancia > temp.distancia:
+                            arr[j] = arr[j - gap]
+                            j -= gap
+                        arr[j] = temp
+                    gap //= 2
+
+            shellsort(tickets)
+
+            # Imprimir el arreglo ordenado
+            for ticket in tickets:
+                print(f"TICKET: {ticket}")
+    else:
+        print("Primero debe cargar datos, elija opción 1 o 2")
+
+    print("Total de registros mayor al promedio: "+total)
+    return True
+
+   
