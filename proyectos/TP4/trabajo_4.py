@@ -13,7 +13,7 @@ def principal():
     op = -1
     while op != 0:
         print("\nMenú de opciones:")
-        print("1. Cargar tickets desde archivo")
+        print("1. Cargar ticketsa un archivo binario desde archivo.csv")
         print("2. Cargar ticket manualmente")
         print("3. Mostrar tickets almcenados")
         print("4. Buscar ticket por patente y país")

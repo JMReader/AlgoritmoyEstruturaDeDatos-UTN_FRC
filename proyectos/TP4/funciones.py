@@ -9,24 +9,47 @@ paises = [ #paises en los que se puede COBRAR en su respectivo orden de craga
     "Bolivia",
     "Brasil",
     "Paraguay",
-    "Uruguay",
-]
+    "Uruguay",]
 vehiculos = ["motocicletas ","automoviles ","camiones"] #tipos de vehiculos en sus respectivo orden de carga
 
 
 def op1():
-    cont = 0
-    archivo = open(ruta) #archivo de texto csv de donde vienen los datos
-    datos = open(bin, "wb") #archivo de datos de tipo binario
-    for line in archivo:
-        cont +=1
-        a = line.split(",")
-        if cont > 2:
-            t = Ticket(a[0],a[1],a[2],a[3],a[4],a[5])
-            pickle.dump(t,datos)
-    archivo.close()
-    datos.close()
-    print("datos cargados correctamente.")
+    op = 0
+    if os.path.exists("datos.dat"):
+        print("Ya existe un archivo binario cargado con tickets desde un archivo.csv")
+        print("Desea borrar esos tickets almacenados y cargar unicamente con los del archivo")
+        print("1_Si\n"
+              "2_No")
+        op = int(input("Ingrese su opcion"))
+    else:
+        cont = 0
+        archivo = open(ruta)  # archivo de texto csv de donde vienen los datos
+        datos = open(bin, "wb")  # archivo de datos de tipo binario
+        for line in archivo:
+            cont += 1
+            a = line.split(",")
+            if cont > 2:
+                t = Ticket(a[0], a[1], a[2], a[3], a[4], a[5])
+                pickle.dump(t, datos)
+        archivo.close()
+        datos.close()
+        print("datos cargados correctamente.")
+    if op == 1:
+        cont = 0
+        archivo = open(ruta) #archivo de texto csv de donde vienen los datos
+        datos = open(bin, "wb") #archivo de datos de tipo binario
+        for line in archivo:
+            cont += 1
+            a = line.split(",")
+            if cont > 2:
+                t = Ticket(a[0],a[1],a[2],a[3],a[4],a[5])
+                pickle.dump(t,datos)
+        archivo.close()
+        datos.close()
+        print("datos cargados correctamente.")
+    elif op == 2:
+        print("Los datos no se sobreescribieron")
+
 
 def validacion_incorrecta_por_cantidad(n, subclase, condicion):
     while len(subclase) != int(n):
