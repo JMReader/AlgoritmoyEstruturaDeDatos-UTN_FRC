@@ -293,8 +293,6 @@ def calcular_monto(ticket):
 
 def op8():
     #Funcion de Nano
-    #ola   
-    #equide
     if os.path.exists(bin):
             t = os.path.getsize(bin)  # Tamaño del archivo
             datos = open(bin, 'rb')
@@ -347,8 +345,9 @@ def op8():
                 print(f"TICKET: {ticket}")
     else:
         print("Primero debe cargar datos, elija opción 1 o 2")
+    print("Distancia promedio desde la ultima cabina entre todos los tickets:", distancia_promedio)
+    print("Total de registros mayor al promedio: ",total)
 
-    print("Total de registros mayor al promedio: "+total)
     return True
 
    
