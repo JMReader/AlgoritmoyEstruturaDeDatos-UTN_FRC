@@ -41,6 +41,7 @@ def validacion_incorrecta_por_cantidad(n, subclase, condicion):
     while len(subclase) != int(n):
         print("no se cumple " + condicion)
         subclase = input("ingrese de nuevo los parametros: ")
+    return subclase
         # verifica que la cantidad de numeros ingresados en la subclase sdea la de n y la condicion es el mensaje de error
 
 
@@ -48,6 +49,7 @@ def validacion_incorrecta_por_numero(desde, hasta, subclase, condicion):
     while not (desde <= int(subclase) <= hasta):
         print("no se cumple " + condicion)
         subclase = input("ingrese de nuevo los parametros: ")
+    return subclase 
     # valida que el valor de subclase este entre esos dos numeros desde y hasta,
 
 
@@ -92,7 +94,7 @@ def op2():  # carga manual de un ticket
         "\nIngrese la patente del vehiculo 7 caracteres alfanuméricos.\n"
         "Recuerde que si es de Chile, el primer carácter debe ser un espacio: "
     )
-    validacion_incorrecta_por_cantidad("7", pat, "con la patente")
+    pat = validacion_incorrecta_por_cantidad("7", pat, "con la patente")
     vehiculo = int(
         input(
             "\nTIPO DE VEHICULO\n"
@@ -102,7 +104,7 @@ def op2():  # carga manual de un ticket
             "Ingrese el tipo de vehiculo: "
         )
     )
-    validacion_incorrecta_por_numero(0, 2, vehiculo, "con el tipo de vehiculo")
+    vehiculo = validacion_incorrecta_por_numero(0, 2, vehiculo, "con el tipo de vehiculo")
     pago = int(
         input(
             "\nFORMA DE PAGO\n"
@@ -111,7 +113,7 @@ def op2():  # carga manual de un ticket
             "Ingrese la forma de pago: "
         )
     )
-    validacion_incorrecta_por_numero(1, 2, pago, "con la forma de pago")
+    pago = validacion_incorrecta_por_numero(1, 2, pago, "con la forma de pago")
     paisdecobro = int(
         input(
             "\nPAIS\n"
@@ -123,7 +125,7 @@ def op2():  # carga manual de un ticket
             "Ingrese el país donde nos encontramos: "
         )
     )
-    validacion_incorrecta_por_numero(
+    paisdecobro = validacion_incorrecta_por_numero(
         0, 4, paisdecobro, "con el pais en donde nos encontramos"
     )
     # en ninguna parte el enunciado dice que no pueden ser mas de tres digitos, solo dice que asi viene en el
@@ -171,7 +173,7 @@ def op4():
     tam = os.path.getsize(bin)
     file = open(bin, 'rb')
     contador = 0
-
+    encontro = False
     while file.tell() < tam:
 
         ticket = pickle.load(file)
@@ -179,11 +181,16 @@ def op4():
         if ticket.patente == patente:
             print('\n', ticket, '\n')
             contador += 1
+            encontro = True
             pass
 
     file.close()
-    # Mostrar el número de registros mostrados
-    print(f"Se mostraron {contador} registros con la patente {patente}\n")
+
+    if encontro:
+        print(f"Se mostraron {contador} registros con la patente {patente}\n")
+    else:
+        print(f"No se encontraron patentes iguales a la ingresada.\n"
+              f"Patente ingresada:  {patente}\n")
 
 
 def op5(num):
@@ -200,6 +207,7 @@ def op5(num):
         # buscamos en el archivo binario cada ticket guardado
         tickGuardado = pickle.load(m)
         if tickGuardado.codigo == num:
+            print("Ticket encontrado:")
             print(tickGuardado)
             bandera = True
             break
@@ -218,7 +226,6 @@ def op6():  # devuelve la matriz bi dimensional para ser usada en el print del m
         conteo_combinacion = [[0] * 5, [0] * 5, [0] * 5]
         t = os.path.getsize(bin)  # tamaño del archivo
         datos = open(bin, 'rb')
-        print("los registros que guardados en el archivo son :")
         # se usa el método tell() para controlar si el valor del file pointer (el puntero del archivo)
         # del archivo gestionado con 'datos' es menor que el tamaño en bytes del archivo (ficha 23)
         while datos.tell() < t:
@@ -232,6 +239,13 @@ def op6():  # devuelve la matriz bi dimensional para ser usada en el print del m
     else:
         print("primero debe cargar datos, elija opcion 1 o 2")
 
+def imprimir(matriz):
+    cant = len(matriz)
+    for i in range(cant):
+        # también podemos poner 5, pero para hacerlo escalable lo dejamos asi
+        j = len(matriz[i])
+        for k in range(j):
+            print("cantidad de", vehiculos[i], "que pasaron por el paisS", paises[k], "son:", matriz[i][k])
 
 def totalizador_vehiculos(matriz):
     m = len(matriz)
@@ -243,7 +257,7 @@ def totalizador_vehiculos(matriz):
         q += 1
         for c in range(n):
             ac += matriz[f][c]
-        print(vehiculos[q] + ": ", ac)
+        print(vehiculos[q] + ":", ac)
 
 
 def totalizador_paises(matriz):
@@ -256,7 +270,7 @@ def totalizador_paises(matriz):
         q += 1
         for f in range(m):
             ac += matriz[f][c]
-        print(paises[q] + ": ", ac)
+        print(paises[q] + ":", ac)
 
 
 def op7(matriz):

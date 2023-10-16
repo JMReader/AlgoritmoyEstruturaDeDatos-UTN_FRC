@@ -36,21 +36,11 @@ def principal():
             op4()
         elif op == "5":
             print("ingrese el código identificador que desea buscar.")
-            cod = int(input("(en caso de ingresar menos de 10 dígitos se llegara a los 10 con ceros a la izquierda "
-                            "automáticamente): "))
-            # si no tiene 10 digitos lo llenamos de ceros al inicio hasta llegar a 10 digitos
-            if len(str(cod)) != 10:
-                o = "0" * (10 - len(str(cod)))
-                cod = o + str(cod)
+            cod = input()
             op5(cod)
         elif op == "6":
             matriz = op6()
-            cant = len(matriz)
-            for i in range(cant):
-                # también podemos poner 5, pero para hacerlo escalable lo dejamos asi
-                j = len(matriz[i])
-                for k in range(j):
-                    print("cantidad de", vehiculos[i], "que pasaron por el pais ", paises[k], "son:", matriz[i][k])
+            imprimir(matriz)
         elif op == "7":
             op7(op6())
         elif op == "8":
